@@ -1,6 +1,6 @@
 import { ThreeDMarquee } from "./../components/ui/3d-marquee";
 import image01 from "../components/Assets/AnimationRequired/image01.png";
-import image02 from "../components/Assets/AnimationRequired/Image02.png";
+// import image02 from "../components/Assets/AnimationRequired/Image02.png";
 import image03 from "../components/Assets/AnimationRequired/image03.png";
 import image04 from "../components/Assets/AnimationRequired/image04.png";
 import image05 from "../components/Assets/AnimationRequired/image05.png";
@@ -35,7 +35,7 @@ import image29 from "../components/Assets/AnimationRequired/image29.png";
 // Merge local and remote images
 const images = [
   image01,
-  image02,
+  // image02,
   image03,
   image04,
   image05,
