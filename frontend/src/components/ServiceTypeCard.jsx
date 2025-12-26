@@ -14,7 +14,7 @@ const ServiceTypeCard = () => {
         "Fast  service"
       ],
       gradient: "from-stdBlue/10 via-stdBlue/5 to-transparent",
-      link: "/signlog",
+      link: "/login",
       buttonColor: "bg-stdBlue hover:bg-blue-800"
     },
     {

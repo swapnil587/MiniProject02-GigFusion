@@ -7,7 +7,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer.jsx';
 import UserSignUp from './Pages/UserSignUp';
-import { SignLog } from "./Pages/SignLog";
+// import { SignLog } from "./Pages/SignLog";
 import HomePage from './Pages/HomePage';
 import LoginPage from './Pages/LoginPage';
 import Services from './Pages/Services';
@@ -46,7 +46,7 @@ import Validate from './Pages/validate.jsx';
 function App() {
     const location = useLocation();
     const navigate = useNavigate();
-    const noFooterRoutes = ["/login", "/signup", "/signup-w", "/signlog", "/chat"];
+    const noFooterRoutes = ["/login", "/signup", "/signup-w", "/chat"];
     const showFooter = !noFooterRoutes.includes(location.pathname);
     const userRole = Cookies.get('userRole');
     const [showAdminModal, setShowAdminModal] = useState(false);
@@ -93,7 +93,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<UserSignUp />} />
-                <Route path="/signlog" element={<SignLog />} />
+                {/* <Route path="/signlog" element={<SignLog />} /> */}
                 <Route path="/services" element={<Services />} />
                 <Route path="/signup-w" element={<WorkerSignUp />} />
 
@@ -141,7 +141,7 @@ function App() {
                 />
             </Routes>
 
-            <div className="fixed bottom-6 right-6 z-50">
+            {/* <div className="fixed bottom-6 right-6 z-50">
                 <div className="group relative">
                     <button
                         onClick={handleAdminClick}
@@ -178,7 +178,7 @@ function App() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* Admin Login Modal */}
             {showAdminModal && (

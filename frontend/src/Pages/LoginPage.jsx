@@ -68,74 +68,110 @@ export default function LoginPage() {
     };
 
     return (
-        <>
-            <div className='flex items-center justify-center font-stdFont relative'>
-                <div className=' absolute inset-0 bg-cover bg-center filter blur-[2px]' style={{ backgroundImage: `url(${LoginPhoto})` }} />
-                <div className='relative z-10'>
-                    <div className=' flex items-center justify-center h-[90vh] font-stdFont  px-5'>
-                        <div className="rounded-3xl w-full max-w-[450px] md:h-[450px] h-auto text-center bg-white p-5 ">
-                            <h1 className='text-3xl md:text-4xl font-bold text-color1'>Welcome</h1>
-                            <p className='text-xs md:text-sm mt-1 text-stdBlue font-semibold'>
-                                Welcome to our community of skilled professionals!
-                            </p>
-                            <form onSubmit={handleLogin}>
-                                <div className="flex flex-col gap-4 justify-center items-center mt-8">
-                                    <input
-                                        type="email"
-                                        placeholder='Email'
-                                        className='h-[45px] w-full max-w-[300px] md:max-w-[320px] border rounded-xl pl-3 outline-none text-sm md:text-base'
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
-                                    <div className="relative w-full max-w-[300px] md:max-w-[320px]">
-                                        <input
-                                            type={showPassword ? "text" : "password"}
-                                            placeholder='Password'
-                                            className='h-[45px] w-full border rounded-xl pl-3 pr-10 outline-none text-sm md:text-base'
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-color1 transition-colors"
-                                        >
-                                            {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
-                                        </button>
-                                    </div>
-                                </div>
-                                <p className='text-right mt-2 md:text-sm text-stdBlue'>
-                                    <Link to="/Forgot">Forgot Password?</Link>
-                                </p>
-                                {error && <p className='text-red-500 text-xs mt-1'>{error}</p>}
-                                <div className="mt-2">
-                                    <button type='submit' className='h-[45px] w-[120px] bg-color1 rounded-full text-[18px] font-bold text-white hover:bg-stdBlue shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105'>
-                                        Login
-                                    </button>
-                                </div>
+        <>         
+       <div className="min-h-screen flex items-center justify-center p-6 font-stdFont">
+  <div className="w-full max-w-md rounded-3xl bg-white border p-6 sm:p-8 shadow-xl">
+    
+    {/* Header */}
+    <div className="text-center">
+      <h1 className="text-2xl sm:text-3xl font-semibold text-color1">
+        Sign In
+      </h1>
+      <p className="text-sm mt-2 text-stdBlue font-semibold">
+        Welcome to our community of skilled professionals!
+      </p>
+    </div>
 
-                                <p className='text-sm mt-2'>
-                                    Don&apos;t have an account? <Link to="/signup" className='text-[14px] font-semibold text-stdBlue'>Sign Up</Link>
-                                </p>
-                                <fieldset className=''>
-                                    <legend>OR</legend>
-                                </fieldset>
-                                <div className="flex flex-col gap-2 justify-center items-center mt-1">
-                                    <button className='w-full max-w-[250px] md:max-w-[280px] h-[45px] border border-stdBlue rounded-xl font-semibold flex items-center justify-center gap-2 bg-white shadow-md hover:shadow-lg transition-all duration-300 ease-in-out '>
-                                        <i className="fa-brands fa-google text-xl text-GoogleIcon"></i>
-                                        <span className="text-gray-700">Login with Google</span>
-                                    </button>
+    {/* Form */}
+    <form onSubmit={handleLogin} className="mt-8">
+        <div className='space-y-4'>
+               {/* Email */}
+      <input
+        type="email"
+        placeholder="Email"
+        className="w-full rounded-xl border px-4 py-2.5 text-base outline-none focus:ring-2 focus:ring-stdBlue/40"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
 
-                                    {/* <button className='w-full max-w-[250px] md:max-w-[280px] h-[45px] border border-stdBlue rounded-xl font-semibold flex items-center justify-center gap-2 bg-white shadow-md hover:shadow-lg transition-all duration-300 ease-in-out'>
-                                        <i className="fa-brands fa-apple text-2xl text-black"></i>
-                                        <span className="text-gray-700">Login with Apple</span>
-                                    </button> */}
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      {/* Password */}
+      <div className="relative">
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          className="w-full rounded-xl border px-4 py-2.5 pr-12 text-base outline-none focus:ring-2 focus:ring-stdBlue/40"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button
+          type="button"
+          onClick={() => setShowPassword(!showPassword)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-color1 transition"
+        >
+          {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+        </button>
+      </div>
+
+        </div>
+
+   
+
+      {/* Forgot */}
+      <div className="flex mt-1 ">
+        <Link to="/Forgot" className="text-sm text-stdBlue">
+          Forgot Password?
+        </Link>
+      </div>
+
+      {/* Error */}
+      {error && (
+        <p className="text-red-500 text-center text-xs ">{error}</p>
+      )}
+
+      {/* Login Button */}
+      <div className="flex justify-center mt-2 pt-2">
+        <button
+          type="submit"
+          className="py-2 w-1/2 rounded-full bg-stdBlue font-semibold text-white hover:bg-color1 shadow-md hover:shadow-lg transition active:scale-95"
+        >
+          Login
+        </button>
+      </div>
+
+      {/* Signup */}
+      <p className="text-center text-xs mt-1">
+        Don&apos;t have an account?{" "}
+        <Link to="/signup" className="text-sm font-semibold text-stdBlue">
+          Sign Up
+        </Link>
+      </p>
+
+      {/* Divider */}
+      <div className="flex items-center gap-3 my-6">
+        <div className="flex-grow border-t border-gray-300"></div>
+        <span className="px-2 text-sm text-gray-400 whitespace-nowrap">
+          OR continue with
+        </span>
+        <div className="flex-grow border-t border-gray-300"></div>
+      </div>
+
+      {/* Google Login */}
+      <div className="flex justify-center">
+        <button
+          className="w-full rounded-xl  px-4 py-2.5 flex items-center justify-center gap-2  border border-stdBlue bg-white font-semibold shadow-sm hover:shadow-md transition active:scale-95"
+        >
+          <i className="fa-brands fa-google text-lg text-GoogleIcon"></i>
+          <span className="text-gray-700 text-sm sm:text-base">
+            Login with Google
+          </span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+       
         </>
     );
 }

@@ -112,7 +112,7 @@ export default function Navbar() {
                   <NavItem to="/chat">Chat</NavItem>
                   <NavItem to="/projects">Projects</NavItem>
                   <NavItem to="/my-projects">My Projects</NavItem>
-                  {/* <NavItem to="/escrow">Escrow</NavItem> */}
+                  
                 </>
               )}
               {userType === 'serviceProvider' && (
@@ -151,7 +151,7 @@ export default function Navbar() {
             <>
               <NavItem to="/services">Services</NavItem>
               <NavItem to="/signup-w">Become a Pro</NavItem>
-              <Link to="/signlog">
+              <Link to="/login">
                 <button className='px-6 py-2 bg-stdBlue text-white rounded-full hover:bg-color1 shadow-md transition-all duration-300 transform hover:scale-105'>
                   Sign Up
                 </button>
@@ -341,7 +341,7 @@ export default function Navbar() {
 
                   <div className="pt-4 border-t border-gray-200">
                     <Link
-                      to="/signlog"
+                      to="/login"
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="block"
                     >
