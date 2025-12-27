@@ -6,6 +6,8 @@ import { FaCog, FaEye, FaEyeSlash } from 'react-icons/fa';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer.jsx';
+import About from './Pages/NaiveUsers/About.jsx';
+
 import UserSignUp from './Pages/UserSignUp';
 
 import HomePage from './Pages/NaiveUsers/HomePage.jsx';
@@ -86,14 +88,14 @@ function App() {
     };
 
     return (
-        <div>
+        <div className="w-full min-h-screen">
             <Navbar />
             <Routes>
                 {/* Before Login Links */}
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<UserSignUp />} />
-                {/* <Route path="/signlog" element={<SignLog />} /> */}
+                <Route path="/about" element={<About />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/signup-w" element={<WorkerSignUp />} />
 

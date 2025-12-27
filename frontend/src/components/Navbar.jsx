@@ -81,7 +81,7 @@ export default function Navbar() {
       to={to}
       className={({ isActive }) =>
         `text-base md:text-lg font-semibold transition-colors duration-200 p-2 md:p-0
-        ${isActive ? 'text-color1 underline' : 'text-stdBlue hover:text-color1'}`
+        ${isActive ? 'text-color1 ' : 'text-stdBlue hover:text-color1'}`
       }
       onClick={() => setIsMobileMenuOpen(false)}
     >
@@ -149,8 +149,9 @@ export default function Navbar() {
             </>
           ) : (
             <>
+            <NavItem to="/about">About</NavItem>
               <NavItem to="/services">Services</NavItem>
-              <NavItem to="/signup-w">Become a Pro</NavItem>
+              
               <Link to="/login">
                 <button className='px-6 py-2 bg-stdBlue text-white rounded-full hover:bg-color1 shadow-md transition-all duration-300 transform hover:scale-105'>
                   Sign Up
@@ -325,18 +326,20 @@ export default function Navbar() {
               ) : (
                 <div className="space-y-4">
                   <div className="space-y-2">
+                     <NavItem to="/about">
+                      <div className="flex items-center gap-3">
+                        <FiBriefcase size={22} />
+                        <span>About</span>
+                      </div>
+                    </NavItem>
+
                     <NavItem to="/services">
                       <div className="flex items-center gap-3">
                         <FiTool size={22} />
                         <span>Services</span>
                       </div>
                     </NavItem>
-                    <NavItem to="/signup-w">
-                      <div className="flex items-center gap-3">
-                        <FiBriefcase size={22} />
-                        <span>Become a Pro</span>
-                      </div>
-                    </NavItem>
+                   
                   </div>
 
                   <div className="pt-4 border-t border-gray-200">

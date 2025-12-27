@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
@@ -16,80 +16,108 @@ const faqs = [
 
 export default function FandQOnFrontPage() {
   const [openIndex, setOpenIndex] = useState(null);
+  const [showMore, setShowMore] = useState(false);
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="max-w-7xl mx-auto py-20 px-6 bg-gray-50">
+    <div className="w-full mx-auto mt-10">
       {/* Enhanced Heading */}
-      <h2 className="text-4xl md:text-5xl font-extrabold text-center text-stdBlue mb-12 tracking-tight">
-        Frequently Asked <span className="text-orange-700">Questions</span>
+      <h2 className="text-2xl md:text-4xl font-bold text-center text-stdBlue mb-6 md:mb-12 tracking-tight">
+        Frequently Asked <span className="text-color1">Questions</span>
       </h2>
 
       {/* Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center">
+      <div className="flex flex-col md:flex-row gap-6 md:gap-20">
         {/* Left Column */}
-        <div className="space-y-6 flex flex-col items-center">
+        <div className="space-y-3 md:space-y-4 flex flex-col items-center">
           {faqs.slice(0, 5).map((faq, index) => (
             <div
               key={index}
-              className="w-full max-w-[600px] bg-white shadow-lg rounded-xl p-5 transition-all duration-300 hover:shadow-xl border border-gray-100"
+              className="w-full  bg-white shadow-lg rounded-xl p-2 md:p-3 transition-all duration-300 hover:shadow-xl border border-gray-100"
             >
               <button
-                className="w-full flex justify-between items-center text-lg font-semibold text-left text-gray-800 hover:text-stdBlue p-2 rounded-lg transition-all duration-200 focus:outline-none"
+                className="w-full flex justify-between items-center text-base md:text-xl font-semibold text-left text-gray-800 hover:text-stdBlue  rounded-lg transition-all duration-200 focus:outline-none"
                 onClick={() => toggleFAQ(index)}
               >
                 <span>{faq.question}</span>
                 <ChevronDown
-                  className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${
+                  className={`w-5 h-5 md:h-7 md:w-7 mr-2 text-gray-500 transition-transform duration-300 ${
                     openIndex === index ? "rotate-180 text-blue-600" : ""
                   }`}
                 />
               </button>
               {/* Smooth Expand/Collapse Animation */}
               <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                className={`bg-gray-200 rounded-lg p-2 mt-1 overflow-hidden transition-all duration-500 ease-in-out ${
                   openIndex === index ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <p className="mt-3 text-gray-600 text-base leading-relaxed">{faq.answer}</p>
+                <p className=" text-stdBlue text-sm md:text-lg leading-relaxed">{faq.answer}</p>
               </div>
             </div>
           ))}
         </div>
 
         {/* Right Column */}
-        <div className="space-y-6 flex flex-col items-center">
-          {faqs.slice(5, 10).map((faq, index) => (
-            <div
-              key={index + 5}
-              className="w-full max-w-[600px] bg-white shadow-lg rounded-xl p-5 transition-all duration-300 hover:shadow-xl border border-gray-100"
-            >
-              <button
-                className="w-full flex justify-between items-center text-lg font-semibold text-left text-gray-800 hover:text-stdBlue p-2 rounded-lg transition-all duration-200 focus:outline-none"
-                onClick={() => toggleFAQ(index + 5)}
-              >
-                {/* Changes are done */}
-                <span>{faq.question}</span>
-                <ChevronDown
-                  className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${
-                    openIndex === index + 5 ? "rotate-180 text-blue-600" : ""
-                  }`}
-                />
-              </button>
-              {/* Smooth Expand/Collapse Animation */}
-              <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  openIndex === index + 5 ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-                }`}
-              >
-                <p className="mt-3 text-gray-600 text-base leading-relaxed">{faq.answer}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+       {/* Right Column */}
+<div
+  className={`
+    space-y-3 md:space-y-4
+    flex flex-col items-center
+    ${showMore ? "block" : "hidden"}
+    md:block
+  `}
+>
+  {faqs.slice(5, 10).map((faq, index) => (
+    <div
+      key={index + 5}
+      className="w-full bg-white shadow-lg rounded-xl p-2 md:p-3 transition-all duration-300 hover:shadow-xl border border-gray-100"
+    >
+      <button
+        className="w-full flex justify-between items-center text-base md:text-xl font-semibold text-left text-gray-800 hover:text-stdBlue rounded-lg transition-all duration-200"
+        onClick={() => toggleFAQ(index + 5)}
+      >
+        <span>{faq.question}</span>
+        <ChevronDown
+          className={`w-5 h-5 md:h-7 md:w-7 mr-2 transition-transform duration-300 ${
+            openIndex === index + 5 ? "rotate-180 text-blue-600" : "text-gray-500"
+          }`}
+        />
+      </button>
+
+      <div
+        className={`bg-gray-200 rounded-lg p-2 mt-1 overflow-hidden transition-all duration-500 ${
+          openIndex === index + 5 ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <p className="text-stdBlue text-sm md:text-lg">{faq.answer}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+{/* Mobile Toggle Button */}
+<div className="flex justify-center mt-2 md:hidden">
+  <button
+    onClick={() => setShowMore(!showMore)}
+    className="
+      px-4 py-2
+      rounded-full
+      bg-stdBlue
+      text-white
+      font-semibold
+      transition-all
+      hover:scale-105
+    "
+  >
+    {showMore ? "Show Less" : "View More"}
+  </button>
+</div>
+
+
       </div>
     </div>
   );

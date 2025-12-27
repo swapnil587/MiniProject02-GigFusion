@@ -34,8 +34,8 @@ const ServiceTypeCard = () => {
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-12 md:py-20">
-      <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+    <div className="w-full   mx-auto mt-6 md:mt-10">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-24">
         {cards.map((card, index) => (
           <div
             key={index}
@@ -49,35 +49,35 @@ const ServiceTypeCard = () => {
 
             {/* Content */}
             <div className="relative p-6 md:p-8">
-              <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-4 mb-2">
                 <div className="p-3 rounded-xl bg-white shadow-lg 
                   transform transition-transform duration-300 hover:scale-110">
                   {card.icon}
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-800 
+                <h3 className="text-xl md:text-3xl font-bold text-gray-800 
                   transition-colors duration-300 hover:text-stdBlue">
                   {card.title}
                 </h3>
               </div>
 
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 md:text-lg font-semibold mb-6">
                 {card.description}
               </p>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-6">
                 {card.benefits.map((benefit, idx) => (
                   <li
                     key={idx}
                     className="flex items-center gap-3 text-gray-700 
-                      transform transition-all duration-300 hover:translate-x-2"
+                      transform transition-all duration-300 hover:translate-x-2 md:text-lg ml-2 md:ml-5"
                     style={{
                       animationDelay: `${(index * 200) + (idx * 100)}ms`,
                       opacity: 0,
                       animation: 'fadeSlideIn 0.5s ease-out forwards'
                     }}
                   >
-                    <span className="h-2 w-2 rounded-full bg-green-500 
-                      transition-transform duration-300 hover:scale-125" />
+                    <span className="h-2 w-2 rounded-full bg-stdBlue 
+                      transition-transform duration-300 hover:scale-125 " />
                     {benefit}
                   </li>
                 ))}
@@ -85,7 +85,7 @@ const ServiceTypeCard = () => {
 
               <Link to={card.link} className="block">
                 <button
-                  className={`w-full ${card.buttonColor} text-white py-3 px-6 
+                  className={`w-full  ${card.buttonColor} text-white py-3  
                     rounded-xl font-semibold flex items-center justify-center gap-2
                     shadow-lg transition-all duration-300 hover:scale-[1.02] 
                     active:scale-[0.98] hover:shadow-xl

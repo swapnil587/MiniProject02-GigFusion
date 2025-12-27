@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import bgImage from "../components/Assets/backgroundImage.png"
 import { toast } from 'react-toastify';
 import SignUpPagePhoto from "../components/Assets/SignUpPagePhoto.jpg"
+import Select from 'react-select';
 
 export default function UserSignUp() {
     // All ok
@@ -19,6 +20,11 @@ export default function UserSignUp() {
     });
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    const [states, setStates] = useState([]);
+    const [cities, setCities] = useState([]);
+    const [selectedState, setSelectedState] = useState(null);
+    const [selectedCity, setSelectedCity] = useState(null);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -52,28 +58,22 @@ export default function UserSignUp() {
 
     return (
         <>
-            <div className="min-h-screen bg-gray-50 flex items-center  justify-center py-8 px-4 sm:px-6 lg:px-8 bg-cover bg-center bg-no-repeat" 
-     style={{ backgroundImage: `url(${SignUpPagePhoto})` }}>
+            <div className="min-h-screen p-4 bg-cover bg-center bg-no-repeat flex items-center justify-center" 
+                style={{ backgroundImage: `url(${SignUpPagePhoto})` }}>
                 
-                <div className="max-w-md w-full space-y-4 bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div className=" bg-gray-50 rounded-2xl shadow-xl overflow-hidden p-4">
                     {/* Header Section */}
-                    <div className="">
                     <div className="text-center">
-    <div className="flex justify-center mb-4">
-        <h1 className="text-4xl font-bold text-color1">Gig Fusion</h1>
-    </div>
-   
-    <p className="mt-1 text-sm font-semibold text-stdBlue">
-        Join our community of skilled Gig Experts!
-    </p>
-</div>
+                        <h1 className="text-4xl font-bold text-color1">Create an Account</h1>
+                        <p className="md:mt-2 text-sm font-semibold text-stdBlue">
+                            Join our community of skilled Gig Experts!
+                        </p>               
                     </div>
 
                     {/* Form Section */}
-                    <div className="px-10  pb-10 ">
-                        <form onSubmit={handleSubmit} className="space-y-3">
-                            {/* Personal Info */}
-                            <div className="space-y-2">
+                    <div className="mt-10 ">
+                        <form onSubmit={handleSubmit} className="space-y-2">
+                            {/* Personal Info */}                            
                                 <input
                                     type="text"
                                     name="fullName"
@@ -94,23 +94,21 @@ export default function UserSignUp() {
                                     focus:outline-none focus:ring-1 focus:ring-stdBlue focus:ring-opacity-50
                                     placeholder-gray-400 transition-all duration-200 ease-in-out"
                                 />
-                            </div>
+                           
 
                             {/* Contact Info */}
-                            <div className="flex gap-4">
+                            <div className="flex gap-3">
                                 <div className="flex-1">
-                                    <div className="flex">                                        
-                                        <input
-                                            type="tel"
-                                            name="contact"
-                                            value={formData.contact}
-                                            onChange={handleInputChange}
-                                            placeholder="Phone Number"
-                                            className="flex-1 h-[45px] px-2 rounded-l-lg border border-gray-300 bg-white 
-                                    focus:outline-none focus:ring-1 focus:ring-stdBlue focus:ring-opacity-50
-                                    placeholder-gray-400 transition-all duration-200 ease-in-out"
-                                        />
-                                    </div>
+                                    <input
+                                        type="tel"
+                                        name="contact"
+                                        value={formData.contact}
+                                        onChange={handleInputChange}
+                                        placeholder="Phone Number"
+                                        className="w-full h-[45px] px-2 rounded-l-lg border border-gray-300 bg-white 
+                                        focus:outline-none focus:ring-1 focus:ring-stdBlue focus:ring-opacity-50
+                                        placeholder-gray-400 transition-all duration-200 ease-in-out"
+                                    />
                                 </div>
                                 <input
                                     type="text"
@@ -118,14 +116,14 @@ export default function UserSignUp() {
                                     value={formData.zipcode}
                                     onChange={handleInputChange}
                                     placeholder="Zipcode"
-                                    className="w-32 h-[45px] px-4 rounded-r-lg border border-gray-300 bg-white 
+                                    className="w-24 sm:w-18 h-[45px] px-4 rounded-r-lg border border-gray-300 bg-white 
                                     focus:outline-none focus:ring-1 focus:ring-stdBlue focus:ring-opacity-50
                                     placeholder-gray-400 transition-all duration-200 ease-in-out"
                                 />
                             </div>
 
                             {/* Location */}
-                            <div className="flex gap-4">
+                            <div className="flex gap-3">
                                 <select
                                     name="state"
                                     value={formData.state}
@@ -159,7 +157,7 @@ export default function UserSignUp() {
                             </div>
 
                             {/* Password Fields */}
-                            <div className="space-y-4">
+                           
                                 <input
                                     type="password"
                                     name="password"
@@ -178,7 +176,7 @@ export default function UserSignUp() {
                                     focus:outline-none focus:ring-1 focus:ring-stdBlue focus:ring-opacity-50
                                     placeholder-gray-400 transition-all duration-200 ease-in-out"
                                 />
-                            </div>
+                           
 
                             {error && (
                                 <div className="bg-red-50 text-red-500 text-sm py-2 px-4 rounded-lg">
@@ -201,7 +199,7 @@ export default function UserSignUp() {
                                 <div className='flex justify-center mt-2'>
                                 <button
                                     type="submit"
-                                    className="w-[150px] h-[45px]  bg-[#FF3D00] text-white rounded-lg
+                                    className="px-4 py-2 mt-2 bg-[#FF3D00] text-white rounded-lg
                                     hover:bg-[#E63600] transform transition-all duration-200 
                                     hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg
                                     font-semibold text-base"
@@ -216,9 +214,9 @@ export default function UserSignUp() {
                         </form>
 
                         {/* Social Login */}
-                        <div className="mt-2 space-y-4">
+                        <div className="flex items-center justify-center mt-2">
                             <button
-                                className="w-full h-[40px]  bg-white border-2 border-gray-200 rounded-lg
+                                className="w-full py-2  bg-white border-2 border-gray-200 rounded-3xl
                                 flex items-center justify-center gap-2 hover:bg-gray-50
                                 transition-all duration-200 font-medium text-gray-700"
                             >
@@ -231,7 +229,7 @@ export default function UserSignUp() {
                         </div>
 
                         {/* Login Link */}
-                        <p className="text-center text-gray-600 text-sm mt-4">
+                        <p className="text-center text-gray-600 text-sm mt-2">
                             Already have an account?{' '}
                             <a href="/login" className="text-[#223265] font-semibold hover:underline">
                                 Log In

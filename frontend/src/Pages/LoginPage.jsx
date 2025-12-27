@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import bgImage from '../components/Assets/backgroundImage.png'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import LoginPhoto from "../components/Assets/LoginPage01Photo.jpg"
+import SignUpPagePhoto from "../components/Assets/SignUpPagePhoto.jpg"
 
 
 export default function LoginPage() {
@@ -69,8 +69,9 @@ export default function LoginPage() {
 
     return (
         <>         
-       <div className="min-h-screen flex items-center justify-center p-6 font-stdFont">
-  <div className="w-full max-w-md rounded-3xl bg-white border p-6 sm:p-8 shadow-xl">
+       <div className="min-h-screen p-4 bg-cover bg-top bg-no-repeat flex items-center justify-center font-stdFont" 
+                style={{ backgroundImage: `url(${SignUpPagePhoto})` }}>
+  <div className="w-full max-w-md rounded-3xl bg-white  border p-6 sm:p-8 shadow-xl">
     
     {/* Header */}
     <div className="text-center">
@@ -139,7 +140,7 @@ export default function LoginPage() {
       </div>
 
       {/* Signup */}
-      <p className="text-center text-xs mt-1">
+      <p className="text-center text-xs mt-3">
         Don&apos;t have an account?{" "}
         <Link to="/signup" className="text-sm font-semibold text-stdBlue">
           Sign Up
